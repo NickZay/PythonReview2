@@ -2,7 +2,7 @@
 
 ## Description
 
-Using Python's Flask, HTML templates and PyDictionary API 
+Using Python's Flask, HTML templates
 
 Windows 10
 
