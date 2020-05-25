@@ -48,9 +48,9 @@ def generate(depth=3, count=50, verbosity=0, output_file=None, probabilities_fil
         choose_and_add_word(data, previous_tokens, main_result, result, editor, verbosity)
 
     if verbosity == 1:
-        answer.append("Текст курильщика:\n")
+        answer.append("Smoker's text:\n")
         answer.append(' '.join(word for word in result if word))
-        answer.append("\n\nТекст здорового человека:\n")
+        answer.append("\n\nHealthy person's text:\n")
 
     answer.append(' '.join(word for word in main_result if word))
     return answer
