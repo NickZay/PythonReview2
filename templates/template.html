@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Flask Parent Template</title>
+        <style>
+            body {
+                margin: 95;
+                padding: 0;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                color: #444;
+            }
+            header {
+                background-color: #DFB887;
+                height: 35px;
+                width: 100%;
+                opacity: .9;
+                margin-bottom: 10px;
+            }
+            header h1.logo {
+                margin: 0;
+                font-size: 1.7em;
+                color: #fff;
+                text-transform: uppercase;
+                float: left;
+            }
+            header h1.logo:hover {
+                color: #fff;
+                text-decoration: none;
+            }
+            .container {
+                width: 1200px;
+                margin: 0;
+            }
+            div.get_home {
+                padding: 20px 0 30px 0;
+                background-color: #E6E6FA;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                border-radius: 6px;
+            }
+            div.get_about {
+                padding: 20px 0 30px 0;
+                background-color: #E6E6FA;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                border-radius: 6px;
+            }
+
+            p {
+                font-size: 1.7em;
+                font-weight: 100;
+                margin-top: 30px;
+                text-align: left;
+                letter-spacing: -1px;
+                color: #999;
+            }
+            .menu {
+                float: left;
+                margin-top: 8px;
+            }
+            .menu li {
+                display: inline;
+            }
+            .menu li + li {
+                margin-left: 35px;
+            }
+            .menu li a {
+                color: #444;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <h1 class="logo">Random Words</h1>
+                <strong>
+                    <nav>
+                        <ul class="menu">
+                            <li><a href="{{ url_for('get_home') }}">Home</a></li>
+                            <li><a href="{{ url_for('get_about') }}">About</a></li>
+                        </ul>
+                    </nav>
+                </strong>
+            </div>
+        </header>
+    {% block content %}
+    {% endblock %}
+    </body>
+</html>
