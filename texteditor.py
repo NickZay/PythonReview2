@@ -3,7 +3,7 @@ import string
 
 def make_dict_of_signs():
     result = dict()
-    for open_sign, close_sign in zip(text_improver.OPEN_SIGNS, text_improver.CLOSE_SIGNS):
+    for open_sign, close_sign in zip(TextImprover.OPEN_SIGNS, TextImprover.CLOSE_SIGNS):
         result[open_sign] = close_sign
         result[close_sign] = open_sign
     return result
@@ -18,7 +18,7 @@ def remove_bad_signs(word):
 def make_capital(word):
     index = 0
     for index, letter in enumerate(word):
-        if letter in string.ascii_letters:
+        if letter in string.ascii_letters or letter in TextImprover.RUSSIAN:
             break
     word = word[:index] + word[index].capitalize() + word[index + 1:]
     return word
@@ -35,7 +35,8 @@ def end_on_bad(word):
 
 def add_one_more_point(word):
     k = -1
-    while k > -len(word) and word[k] not in string.ascii_letters:
+    while k > -len(word) and word[k] not in string.ascii_letters and \
+            word[k] not in TextImprover.RUSSIAN:
         k -= 1
     else:
         if k != -1:
@@ -45,10 +46,11 @@ def add_one_more_point(word):
     return word
 
 
-class text_improver:
+class TextImprover:
     OPEN_SIGNS = ('(', '[', '{', '“', '"', '«', '‘', '')
     CLOSE_SIGNS = (')', ']', '}', '”', '"', '»', '’', '')
     PUNCTUATION_SIGNS = ('.', '?', '!')
+    RUSSIAN = "АаБбВвГгДдЕеЁёЖжЗзИиЙйКкЛлМмНнОоПпСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯя"
 
     def __init__(self, number_of_words):
         self.has_quote = False
@@ -77,18 +79,18 @@ class text_improver:
         new_word = ''
         is_it_end = False
         for letter in word:
-            if letter in string.ascii_letters:
+            if letter in string.ascii_letters or letter in TextImprover.RUSSIAN:
                 is_it_end = True
-            if letter in text_improver.OPEN_SIGNS and not (letter == '"' and letter in self.stack_of_signs):
+            if letter in TextImprover.OPEN_SIGNS and not (letter == '"' and letter in self.stack_of_signs):
                 if not is_it_end:
                     self.stack_of_signs.append(letter)
                     new_word += letter
-            elif letter in text_improver.PUNCTUATION_SIGNS:
+            elif letter in TextImprover.PUNCTUATION_SIGNS:
                 new_word += letter
                 if '...' not in word and 'www' not in word:
                     new_word = self.fflush(new_word)
                 self.is_start_sentence = True
-            elif letter in text_improver.CLOSE_SIGNS and \
+            elif letter in TextImprover.CLOSE_SIGNS and \
                     not (letter == '’' and end_on_bad(word)):
                 if is_it_end:
                     new_word = self.fflush(new_word, letter)
