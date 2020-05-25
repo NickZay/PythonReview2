@@ -8,13 +8,13 @@
     	{% extends "template.html" %}
     	{% block content %}
 
-		<h1>Get your file</h1>
+		<h1>Give me your file and set properties:</h1>
 		<form method="post" action="." enctype="multipart/form-data">
-			<p>depth: </p>
+			<p>depth of calculation of combinations: </p>
 			<input type="number" name="depth" value="3" min="0" max="10"/>
-			<p>count: </p>
+			<p>count of words you want to get: </p>
 			<input type="number" name="count" value="50" min="0" max="10000000"/>
-			<p>verbosity: </p>
+			<p>verbosity: 1 - with initial text and 0 - without : </p>
 			<input type="number" name="verbosity" value="1" min="0" max="1"/>
 			<div>
 				<label for="file">Choose file to upload</label>
